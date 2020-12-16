@@ -13,13 +13,30 @@ class doubly_linked_list:
       self.head = None
 
 # Define the push method to add elements		
-   def push_head(self, NewVal):
+   def insert_head(self, NewVal):
 
       NewNode = Node(NewVal)
       NewNode.next = self.head
       if self.head is not None:
          self.head.prev = NewNode
       self.head = NewNode
+
+   def insert_end(self, NewVal):
+        if self.head is None:
+            NewNode = Node(NewVal)
+            NewNode.next = None
+            self.head = NewNode
+            return
+        n = self.head
+        #elif self.head.next == None:
+            #self.head.next = NewNode
+           # NewNode.prev = self.head
+           # NewNode.next = None
+        while n.next is not None:
+            n = n.next 
+        NewNode = Node(NewVal)
+        n.next = NewNode
+        NewNode.next = None
 
 # Define the insert method to insert the element		
    def insert(self, prev_node, NewVal):
@@ -40,8 +57,9 @@ class doubly_linked_list:
          node = node.next
 
 dllist = doubly_linked_list()
-dllist.push(12)
-dllist.push(8)
-dllist.push(62)
-dllist.push(69)
+dllist.insert_head(12)
+dllist.insert_end(8)
+dllist.insert_head(62)
+dllist.insert_end(7)
+dllist.insert_head(16)
 dllist.listprint(dllist.head)
